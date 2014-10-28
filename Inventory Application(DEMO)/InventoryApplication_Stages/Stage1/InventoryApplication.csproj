@@ -60,14 +60,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\css\app.css" />
     <Content Include="app\favicon.ico" />
     <Content Include="app\Index.html" />
     <Content Include="app\lib\angular\angular-resource.js" />
     <Content Include="app\lib\angular\angular-route.js" />
     <Content Include="app\lib\angular\angular-sanitize.js" />
     <Content Include="app\lib\angular\angular.js" />
-    <Content Include="app\Scripts\app.js" />
-    <Content Include="app\Scripts\Controllers\ProductsController.js" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

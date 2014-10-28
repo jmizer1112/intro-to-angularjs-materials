@@ -60,6 +60,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\css\app.css" />
     <Content Include="app\favicon.ico" />
     <Content Include="app\Index.html" />
     <Content Include="app\lib\angular\angular-resource.js" />

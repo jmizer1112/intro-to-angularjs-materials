@@ -3,12 +3,7 @@
 <head>
     <title>Gettin Store Products</title>
     
-    <style type="text/css">
-        .numericItem {
-            width: 100px;
-            text-align: right
-        }
-    </style>
+    <link rel="stylesheet" href="css/app.css" type="text/css" />
 </head>
 <body ng-app="inventoryApplication">
 
@@ -29,17 +24,17 @@
 
         <table>
             <thead>
-            <th style="width: 200px; text-align: left">Description</th>
-            <th class="numericItem">Quantity</th>
-            <th class="numericItem">Price</th>
-            <th class="numericItem">Unit</th>
+            <th class="productDescriptionCell">Description</th>
+            <th class="numericItemCell">Quantity</th>
+            <th class="numericItemCell">Price</th>
+            <th class="numericItemCell">Unit</th>
             </thead>
             <tbody>
                 <tr ng-repeat="product in store.products | orderBy:sortProperty">
-                    <td style="width: 200px">{{product.description}}</td>
-                    <td class="numericItem">{{product.quantity}}</td>
-                    <td class="numericItem">{{product.price}}</td>
-                    <td class="numericItem">{{product.unit}}</td>
+                    <td class="productDescriptionCell">{{product.description}}</td>
+                    <td class="numericItemCell">{{product.quantity}}</td>
+                    <td class="numericItemCell">{{product.price}}</td>
+                    <td class="numericItemCell">{{product.unit}}</td>
                 </tr>
             </tbody>
         </table>

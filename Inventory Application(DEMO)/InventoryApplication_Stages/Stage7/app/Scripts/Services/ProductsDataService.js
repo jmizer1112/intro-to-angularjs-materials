@@ -16,18 +16,27 @@ inventoryApplication.factory('productsDataService', [
          { id: '0010', description: 'Beer2', price: 20.75, quantity: 20, unit: 'case' }
      ];
 
-     var getProductsMethod = function () {
-         return this.products;
+     var getIndexOfProduct = function (productsCollection, idOfItemToRetrieve) {
+         var productIndex;
+         for (var index = 0; index < productsCollection.length; index++) {
+             if (productsCollection[index].id === idOfItemToRetrieve) {
+                 productIndex = index;
+                 break;
+             }
+         }
+
+         return productIndex;
      };
 
      var padRight = function(stringToPad, maximumCharactersInString) {
 
          stringToPad = stringToPad.toString();
          return stringToPad.length < maximumCharactersInString ? padRight('0' + stringToPad, maximumCharactersInString) : stringToPad;
-     }
+     };
 
-
-     ;
+     var getProductsMethod = function () {
+         return this.products;
+     };
 
      var getNewItemMethod = function () {
 
@@ -49,13 +58,7 @@ inventoryApplication.factory('productsDataService', [
      };
 
      var removeItemMethod = function(itemToRemove) {
-         var productToRemoveIndex;
-         for (var index = 0; index < this.products.length; index++) {
-             if (this.products[index].id === itemToRemove.id) {
-                 productToRemoveIndex = index;
-                 break;
-             }
-         }
+         var productToRemoveIndex = getIndexOfProduct(this.products, itemToRemove.id);
 
          if (productToRemoveIndex >= 0)
              this.products.splice(productToRemoveIndex, 1);
@@ -63,15 +66,10 @@ inventoryApplication.factory('productsDataService', [
 
      var updateItemMethod = function (itemToUpdate) {
          if (!itemToUpdate.hasOwnProperty('newItem')) {
-         
-             var targetOfUpdate;
-             for (var index = 0; index < this.products.length; index++) {
-                 if (this.products[index].id === itemToUpdate.id) {
-                     targetOfUpdate = this.products[index];
-                     break;
-                 }
-             }
 
+             var indexOfProductToUpdate = getIndexOfProduct(itemToUpdate.id);
+             var targetOfUpdate = this.products[indexOfProductToUpdate];
+             
              if (targetOfUpdate) {
                  targetOfUpdate.description = itemToUpdate.description;
                  targetOfUpdate.price = itemToUpdate.price;

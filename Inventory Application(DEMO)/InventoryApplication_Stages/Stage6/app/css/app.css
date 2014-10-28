@@ -1,0 +1,40 @@
+
+.numericItemCell {
+    width: 100px;
+    text-align: right;
+}
+
+.listItemEditInteraction {
+    width: 100px;
+    text-align: right;
+}
+
+.inputLabel {
+    text-align: right;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.editorFormButton {
+    width: 90px;
+    display: table-cell;
+    margin: 2px;
+    text-align: center;
+}
+
+.inputField {
+    margin: 2px;
+}
+
+.productDescriptionCell {
+    width: 200px;
+    text-align: left;
+}
+
+.addNewProductButton {
+    margin-left: 10px;
+}
+
+.listItemEditInteractionCell {
+    text-align: center;
+}

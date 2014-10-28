@@ -3,84 +3,36 @@
 ////retrieve the module DO NOT FORGET THE DEPENDENCY COLLECTION OR AN ERROR WILL OCCOUR
 var inventoryApplication = angular.module('inventoryApplication', []);
 
-FilterSettings = function () {
-
-    var toggleFilteringForColumnFunction = function (filterSettings, columnName) {
-        var loweredColumnName = columnName.toLowerCase();
-        var indexOfFilteredWordInColumnName = filterSettings.columnTitles[columnName].indexOf('filtered');
-        if (indexOfFilteredWordInColumnName != -1) {
-            filterSettings.columnTitles[columnName] = filterSettings.columnTitles[columnName].replace('(filtered)', '');
-            if (filterSettings.filterInstance.hasOwnProperty(loweredColumnName))
-                delete filterSettings.filterInstance[loweredColumnName];
-        } else {
-            filterSettings.columnTitles[columnName] = filterSettings.columnTitles[columnName] + '(filtered)';
-
-            filterSettings.filterInstance[loweredColumnName] = null;
-        }
-    };
-
-    var filterSettingsInstance = {
-        columnTitles:
-            {
-                Description: 'Description',
-                Price: 'Price',
-                Quantity: 'Quantity',
-                Unit: 'Unit'
-            },
-        filterInstance: {},
-        toggleFilteringForColumn: toggleFilteringForColumnFunction
-    };
-
-    return filterSettingsInstance;
-};
-
-
 //Add a controller to the module
 inventoryApplication.controller('ProductsController', [
     '$scope', function ProductsController($scope) {
 
-        $scope.filterSettings = new FilterSettings();
+        $scope.filterSettings = new filterSettings(
+                    {
+                        Description: 'Description',
+                        Price: 'Price',
+                        Quantity: 'Quantity',
+                        Unit: 'Unit'
+                    });
 
-        $scope.filterProductComparer = function (itemToCheck, index) {
-            var includeItem = true;
-            var filterInstanceReference = $scope.filterSettings.filterInstance;
-            if ($scope.filterText) {
-                var hasProperties = false;
-                includeItem = false;
-                for (var namedProperty in filterInstanceReference) {
-                    hasProperties = true;
-                    if (filterInstanceReference.hasOwnProperty(namedProperty) && itemToCheck.hasOwnProperty(namedProperty) && itemToCheck[namedProperty]) {
-                        var filterTextUpperCase = '', itemPropertyValueUpperCase;
-                        if ($scope.filterText) {
-                            filterTextUpperCase = $scope.filterText.toUpperCase();
+        $scope.compareItemToFilter = function (itemToCheck, index) {
 
-                            itemPropertyValueUpperCase = String(itemToCheck[namedProperty]).toUpperCase();
+            return $scope.filterSettings.compareItemToFilter(itemToCheck, index);
+        };
 
-                            if (itemPropertyValueUpperCase.indexOf(filterTextUpperCase) != -1) {
-                                includeItem = true;
-                                break;
-                            }
-                        } else includeItem = true;
-                    }
-                }
-
-                includeItem = hasProperties ? includeItem : true;
-            }
-
-            return includeItem;
+        $scope.toggleFilteringForColumn = function(columnName) {
+            $scope.filterSettings.toggleFilteringForColumn(columnName);
         }
 
+        $scope.columnTitles = $scope.filterSettings.columnTitles;
 
         $scope.sortProperty = '';
+        $scope.sortDescending = false;
 
-        $scope.toggleSortDirection = function () {
-            if ($scope.sortDescending) {
-                $scope.sortDescending = null;
-            }
-            else {
-                $scope.sortDescending = 'true';
-            }
-        }
+         $scope.toggleSortDirection = function () {
+            $scope.sortDescending = !$scope.sortDescending;
+        };
+
         $scope.store = {
             name: 'Gettin Store',
             products: [

@@ -1,5 +1,0 @@
-C:\Presentations\ng-intro - AngularJS Introduction\VS_Demos\InventoryApplication\bin\InventoryApplication.dll
-C:\Presentations\ng-intro - AngularJS Introduction\VS_Demos\InventoryApplication\bin\InventoryApplication.pdb
-C:\Presentations\ng-intro - AngularJS Introduction\VS_Demos\InventoryApplication\obj\Debug\InventoryApplication.csprojResolveAssemblyReference.cache
-C:\Presentations\ng-intro - AngularJS Introduction\VS_Demos\InventoryApplication\obj\Debug\InventoryApplication.dll
-C:\Presentations\ng-intro - AngularJS Introduction\VS_Demos\InventoryApplication\obj\Debug\InventoryApplication.pdb

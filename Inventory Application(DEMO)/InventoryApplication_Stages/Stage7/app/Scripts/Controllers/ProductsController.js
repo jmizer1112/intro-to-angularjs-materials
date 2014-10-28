@@ -7,17 +7,23 @@ inventoryApplication.controller('ProductsController', [
     '$scope', 'productsDataService', function ($scope, productsDataService) {
 
         $scope.filterSettings = new filterSettings(
-            {
-                Description: 'Description',
-                Price: 'Price',
-                Quantity: 'Quantity',
-                Unit: 'Unit'
-            });
+                              {
+                                  Description: 'Description',
+                                  Price: 'Price',
+                                  Quantity: 'Quantity',
+                                  Unit: 'Unit'
+                              });
 
-        $scope.compareItemToFilter = function(itemToCheck, index) {
+        $scope.compareItemToFilter = function (itemToCheck, index) {
 
             return $scope.filterSettings.compareItemToFilter(itemToCheck, index);
         };
+
+        $scope.toggleFilteringForColumn = function (columnName) {
+            $scope.filterSettings.toggleFilteringForColumn(columnName);
+        }
+
+        $scope.columnTitles = $scope.filterSettings.columnTitles;
 
         $scope.sortProperty = '';
         $scope.sortDescending = false;

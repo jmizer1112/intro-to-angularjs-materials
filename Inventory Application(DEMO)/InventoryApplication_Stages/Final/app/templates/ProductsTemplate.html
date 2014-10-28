@@ -3,7 +3,6 @@
 
     <br />
 
-
     <div>
         <span>Filter: </span>
         <input type="search" ng-model="filterSettings.filterText" />
@@ -15,8 +14,9 @@
             <option value="description">Description</option>
             <option value="unit">Unit</option>
         </select>
-        <a ng-hide="sortDescending" href="" ng-click="toggleSortDirection()">Ascending</a><a ng-show="sortDescending" href="" ng-click="toggleSortDirection()">Descending</a>
-        <a style="margin-left: 10px" href="" ng-click="addNewProduct()">Add Product</a>
+        <a ng-hide="sortDescending" ng-click="toggleSortDirection()" href="">Sort Descending</a>
+        <a ng-show="sortDescending" ng-click="toggleSortDirection()" href="">Sort Ascending</a>
+        <a ng-hide="productToUpdate" ng-click="addNewProduct()" class="addNewProductButton" href="">Add Product</a>
     </div>
 
     <br />
@@ -24,29 +24,29 @@
     <div style="float: left; margin-bottom: 80px">
         <table>
             <thead>
-            <th style="width: 200px; text-align: left">
-                <a href="" ng-click="filterSettings.toggleFilteringForColumn('Description')">{{filterSettings.columnTitles['Description']}}</a>
+            <th class="productDescriptionCell">
+                <a href="" ng-click="toggleFilteringForColumn('Description')">{{columnTitles['Description']}}</a>
             </th>
-            <th class="numericItem">
-                <a href="" ng-click="filterSettings.toggleFilteringForColumn('Quantity')">{{filterSettings.columnTitles['Quantity']}}</a>
+            <th class="numericItemCell">
+                <a href="" ng-click="toggleFilteringForColumn('Quantity')">{{columnTitles['Quantity']}}</a>
             </th>
-            <th class="numericItem">
-                <a href="" ng-click="filterSettings.toggleFilteringForColumn('Price')">{{filterSettings.columnTitles['Price']}}</a>
+            <th class="numericItemCell">
+                <a href="" ng-click="toggleFilteringForColumn('Price')">{{columnTitles['Price']}}</a>
             </th>
-            <th>
-                <a href="" ng-click="filterSettings.toggleFilteringForColumn('Unit')">{{filterSettings.columnTitles['Unit']}}</a>
+            <th class="numericItemCell">
+                <a href="" ng-click="toggleFilteringForColumn('Unit')">{{columnTitles['Unit']}}</a>
             </th>
             <th style="width: 100px"></th>
             <th style="width: 100px"></th>
             </thead>
             <tbody>
                 <tr ng-repeat="product in store.products | orderBy:sortProperty:sortDescending | filter:compareItemToFilter">
-                    <td style="width: 200px">{{product.description}}</td>
-                    <td class="numericItem">{{product.quantity}}</td>
-                    <td class="numericItem">{{product.price}}</td>
-                    <td class="numericItem">{{product.unit}}</td>
-                    <td style="text-align: center"> <a class="listItemEditInteraction" href="" ng-click="editProduct(product)">Edit Product</a> </td>
-                    <td style="text-align: center"> <a class="listItemEditInteraction" href="" ng-click="removeProduct(product)">Delete Product</a> </td>
+                    <td class="productDescriptionCell">{{product.description}}</td>
+                    <td class="numericItemCell">{{product.quantity}}</td>
+                    <td class="numericItemCell">{{product.price}}</td>
+                    <td class="numericItemCell">{{product.unit}}</td>
+                    <td class="listItemEditInteractionCell"> <a class="listItemEditInteraction" href="" ng-click="editProduct(product)">Edit Product</a> </td>
+                    <td class="listItemEditInteractionCell"> <a class="listItemEditInteraction" href="" ng-click="removeProduct(product)">Delete Product</a> </td>
                 </tr>
             </tbody>
         </table>
