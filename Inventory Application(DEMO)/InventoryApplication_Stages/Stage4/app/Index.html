@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Gettin Store Products</title>
+    
+    <style type="text/css">
+        .numericItem {
+            width: 100px;
+            text-align: right
+        }
+    </style>
+</head>
+<body ng-app="inventoryApplication">
+
+    <div ng-controller="ProductsController">
+        <h2>{{store.name}}</h2>
+
+        <br />
+        
+        <div>Sort list: 
+            <select ng-model="sortProperty">
+                <option value="">Unsorted</option>
+                <option value="price">Price </option>
+                <option value="quantity">Quantity</option>
+                <option value="description">Description</option>
+                <option value="unit">Unit</option>
+            </select>
+            <a ng-hide="sortDescending" href="" ng-click="toggleSortDirection()">Ascending</a><a ng-show="sortDescending" href="" ng-click="toggleSortDirection()">Descending</a>
+        </div>
+        
+        <br />
+
+        <table>
+            <thead>
+            <th style="width: 200px; text-align: left">Description</th>
+            <th class="numericItem">Quantity</th>
+            <th class="numericItem">Price</th>
+            <th class="numericItem">Unit</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="product in store.products | orderBy:sortProperty:sortDescending">
+                    <td style="width: 200px">{{product.description}}</td>
+                    <td class="numericItem">{{product.quantity}}</td>
+                    <td class="numericItem">{{product.price}}</td>
+                    <td class="numericItem">{{product.unit}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <script src="lib/angular/angular.js"></script>
+    <script src="Scripts/app.js"></script>
+    <script src="Scripts/Controllers/ProductsController.js"></script>
+</body>
+</html>

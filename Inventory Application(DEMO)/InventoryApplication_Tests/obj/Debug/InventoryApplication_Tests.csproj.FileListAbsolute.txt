@@ -1,0 +1,1 @@
+C:\Presentations\ng-intro - AngularJS Introduction\VS_Demos\InventoryApplication_Tests\obj\Debug\InventoryApplication_Tests.csprojResolveAssemblyReference.cache

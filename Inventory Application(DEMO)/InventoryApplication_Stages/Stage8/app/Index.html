@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Gettin Store Products</title>
+
+    <style type="text/css">
+        .numericItem {
+            width: 100px;
+            text-align: right;
+        }
+
+        .listItemEditInteraction {
+            width: 100px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body ng-app="inventoryApplication">
+
+    <h1>Inventory Application</h1>
+    
+    <ng-view></ng-view>
+
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular/angular-route.js"></script>
+    <script src="lib/custom/filterSettings.js"></script>
+    <script src="Scripts/app.js"></script>
+    <script src="Scripts/Services/ProductsDataService.js"></script>
+    <script src="Scripts/Controllers/ProductsController.js"></script>
+    <script src="Scripts/Controllers/ProductEditorController.js"></script>
+</body>
+</html>

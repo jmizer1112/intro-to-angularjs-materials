@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+
+    <title>Jasmin Spec Runner: Jasmine Core</title>
+
+    
+    <!--Dependencies-->
+    <link href="css/jasmine.css" rel="stylesheet" />
+    <script type="text/javascript" src="Scripts/jasmine.js"></script>
+    <script type="text/javascript" src="Scripts/jasmine-html.js"></script>
+    <script type="text/javascript" src="Scripts/sinon-1.9.1.js"></script>
+    
+    
+    <script type="text/javascript" src="../InventoryApplication/app/lib/angular/angular.js"></script>
+    <script type="text/javascript" src="../InventoryApplication/app/lib/angular/angular-resource.js"></script>
+    <script type="text/javascript" src="../InventoryApplication/app/lib/angular/angular-route.js"></script>
+    
+    <script type="text/javascript" src="Scripts/angular-mocks.js"></script>
+    <script type="text/javascript" src="../InventoryApplication/app/scripts/app.js"></script>
+
+    
+    
+    <!--Sources of things to test-->
+    <script type="text/javascript" src="../InventoryApplication/app/Scripts/Services/ProductsDataService.js"></script>
+    <script type="text/javascript" src="../InventoryApplication/app/Scripts/Controllers/ProductEditorController.js"></script>
+    
+    
+    
+
+   
+    
+    <!--Sources of tests-->
+    <script type="text/javascript" src="specifications/ProductEditorController_Specifications.js"></script>
+
+    <script type="text/javascript">
+
+        (function () {
+            var jasmineEnvironment = jasmine.getEnv();
+
+            var htmlReporter = new jasmine.HtmlReporter();
+            jasmineEnvironment.addReporter(htmlReporter);
+            jasmineEnvironment.specFilter = function (specification) {
+                return htmlReporter.specFilter(specification);
+            };
+
+            window.onload = function () { executeJasmine(); };
+
+            function executeJasmine() {
+                jasmineEnvironment.execute();
+            }
+
+        })();
+
+    </script>
+
+</head>
+<body>
+</body>
+</html>

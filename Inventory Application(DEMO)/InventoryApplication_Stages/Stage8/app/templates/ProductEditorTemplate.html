@@ -1,0 +1,46 @@
+﻿<div >
+    <h2>Product Editor</h2>
+    <br />
+    <style type="text/css">
+        .inputLabel {
+            text-align: right;
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+
+        .editorFormButton {
+            width: 90px;
+            display: table-cell;
+            margin: 2px;
+            text-align: center;
+        }
+
+        .inputField {
+            margin: 2px;
+        }
+    </style>
+    <form style="margin-top: -35px">
+        <span class="inputLabel">Description</span>
+        <input class="inputField" type="text" ng-model="productToUpdate.description" /><br />
+
+        <span class="inputLabel" style="margin-left: 42px">Price</span>
+        <input class="inputField" type="number" ng-model="productToUpdate.price" /><br />
+
+        <span class="inputLabel" style="margin-left: 19px">Quantity</span>
+        <input class="inputField" type="number" ng-model="productToUpdate.quantity" /><br />
+
+        <span class="inputLabel" style="margin-left: 47px">Unit</span>
+        <input class="inputField" type="text" ng-model="productToUpdate.unit" /><br />
+
+        <div style="display: table; width: 400px">
+            <button class="editorFormButton" type="button" ng-click="saveAndResetProductToUpdate()">Save &amp; New</button>
+            <button class="editorFormButton" type="button" ng-click="saveEntryAndReturn()">Save</button>
+            <button class="editorFormButton" type="button" ng-click="cancelEntry()">Cancel</button>
+        </div>
+
+
+
+    </form>
+
+
+</div>

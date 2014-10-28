@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Gettin Store Products</title>
+
+    <style type="text/css">
+        .numericItem {
+            width: 100px;
+            text-align: right;
+        }
+
+        .listItemEditInteraction {
+            width: 100px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body ng-app="inventoryApplication">
+
+    <div ng-controller="ProductsController">
+        <h2>{{store.name}}</h2>
+
+        <br />
+
+
+        <div>
+            <span>Filter: </span>
+            <input type="search" ng-model="filterSettings.filterText" />
+            <span>Sort By: </span>
+            <select ng-model="sortProperty">
+                <option value="">Unsorted</option>
+                <option value="price">Price </option>
+                <option value="quantity">Quantity</option>
+                <option value="description">Description</option>
+                <option value="unit">Unit</option>
+            </select>
+            <a ng-hide="sortDescending" href="" ng-click="toggleSortDirection()">Ascending</a><a ng-show="sortDescending" href="" ng-click="toggleSortDirection()">Descending</a>
+            <a style="margin-left: 10px" ng-hide="productToUpdate" href="" ng-click="addNewProduct()" >Add Product</a>
+        </div>
+
+        <br />
+
+        <div style="float: left; margin-bottom: 80px">
+            <table>
+                <thead>
+                    <th style="width: 200px; text-align: left">
+                        <a href="" ng-click="filterSettings.toggleFilteringForColumn('Description')">{{filterSettings.columnTitles['Description']}}</a>
+                    </th>
+                    <th class="numericItem">
+                        <a href="" ng-click="filterSettings.toggleFilteringForColumn('Quantity')">{{filterSettings.columnTitles['Quantity']}}</a>
+                    </th>
+                    <th class="numericItem">
+                        <a href="" ng-click="filterSettings.toggleFilteringForColumn('Price')">{{filterSettings.columnTitles['Price']}}</a>
+                    </th>
+                    <th >
+                        <a href="" ng-click="filterSettings.toggleFilteringForColumn('Unit')">{{filterSettings.columnTitles['Unit']}}</a>
+                    </th>
+                    <th style="width: 100px"></th>
+                    <th style="width: 100px"></th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="product in store.products | orderBy:sortProperty:sortDescending | filter:compareItemToFilter">
+                        <td style="width: 200px">{{product.description}}</td>
+                        <td class="numericItem">{{product.quantity}}</td>
+                        <td class="numericItem">{{product.price}}</td>
+                        <td class="numericItem">{{product.unit}}</td>
+                        <td style="text-align: center" > <a class="listItemEditInteraction" href="" ng-click="updateProduct(product)" >Edit Product</a> </td>
+                        <td style="text-align: center" > <a class="listItemEditInteraction" href="" ng-click="removeProduct(product)" >Delete Product</a> </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div style="float: left; margin-left: 50px; margin-top: -50px; vertical-align: top" ng-show="productToUpdate">
+            <h2>Product Editor</h2>
+            <br />
+            <style type="text/css">
+                .inputLabel {
+                    text-align: right;
+                    margin-top: 2px;
+                    margin-bottom: 2px;
+                }
+
+                .editorFormButton {
+                    width: 90px;
+                    display: table-cell;
+                    margin: 2px;
+                    text-align: center;
+                }
+
+                .inputField {
+                    margin: 2px;
+                }
+            </style>
+            <form style="margin-top: -35px" >
+                <span class="inputLabel">Description</span>
+                <input class="inputField" type="text" ng-model="productToUpdate.description" /><br />
+
+                <span class="inputLabel" style="margin-left: 42px">Price</span>
+                <input class="inputField" type="number" ng-model="productToUpdate.price" /><br />
+
+                <span class="inputLabel" style="margin-left: 19px">Quantity</span>
+                <input class="inputField" type="number" ng-model="productToUpdate.quantity" /><br />
+
+                <span class="inputLabel" style="margin-left: 47px">Unit</span>
+                <input class="inputField" type="text" ng-model="productToUpdate.unit" /><br />
+
+                <div style="display: table; width: 400px">
+                    <button class="editorFormButton" type="button" ng-click="saveAndResetProductToUpdate()" >Save &amp; New</button>
+                    <button class="editorFormButton" type="button" ng-click="saveEntry()" >Save</button>
+                    <button class="editorFormButton" type="button" ng-click="cancelEntry()" >Cancel</button>
+                </div>
+
+
+
+            </form>
+
+
+        </div>
+
+
+
+
+    </div>
+
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/custom/filterSettings.js"></script>
+    <script src="Scripts/app.js"></script>
+    <script src="Scripts/Services/ProductsDataService.js"></script>
+    <script src="Scripts/Controllers/ProductsController.js"></script>
+</body>
+</html>
